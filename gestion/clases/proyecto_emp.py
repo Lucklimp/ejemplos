@@ -1,5 +1,5 @@
-from gestion.clases.emplea import Empleados
-from gestion.clases.proyecto import Proyecto
+from GESTION.CLASES.empleados import Empleados
+from GESTION.CLASES.proyecto import Proyecto
 
 class ProyectoEmp(Empleados, Proyecto):
     def __init__(self, id_proyemp, id_proyecto, id_rut):

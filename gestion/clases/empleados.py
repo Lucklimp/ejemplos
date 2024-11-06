@@ -1,8 +1,8 @@
 from cryptography.fernet import Fernet
 import re
 #from prettytable import prettytable
-from gestion.clases.tipo_emp import TipoEmpleados  
-from gestion.clases.role import Rol
+from GESTION.CLASES.tipo_emp import TipoEmpleados  
+from GESTION.CLASES.role import Rol
 #table = prettytable.PrettyTable()
 
 class Empleados(TipoEmpleados, Rol) :

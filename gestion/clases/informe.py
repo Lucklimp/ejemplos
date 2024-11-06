@@ -1,4 +1,4 @@
-from gestion.dal.db import conexion
+from GESTION.DAL.db import conexion
 from pandas.plotting import table
 import pandas as pd
 import matplotlib.pyplot as plt

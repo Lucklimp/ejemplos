@@ -2,7 +2,7 @@ import mysql.connector
 from mysql.connector import Error
 
 import pandas as pd
-from gestion.dal.db import conexion
+from GESTION.DAL.db import conexion
 
 def agregar_departamento():
 

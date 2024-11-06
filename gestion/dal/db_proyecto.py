@@ -1,4 +1,4 @@
-from gestion.dal.db import conexion
+from GESTION.DAL.db import conexion
 from mysql.connector import Error
 import pandas as pd
 def crear_proyecto():
