@@ -23,17 +23,17 @@ INSERT INTO tipo_empleado (ID_TIPO, TIPO) VALUES
 (10, 'Investigación y Desarrollo');
 
 
-INSERT INTO departamento (ID_DEPTO, NOMBRE, ID_RUT) VALUES
-(1, 'Recursos Humanos', 12345678),
-(2, 'Finanzas', 23456789),
-(3, 'Tecnología', 34567890),
-(4, 'Marketing', 45678901),
-(5, 'Ventas', 56789012),
-(6, 'Investigación y Desarrollo', 67890123),
-(7, 'Servicio al Cliente', 78901234),
-(8, 'Operaciones', 89012345),
-(9, 'Legal', 90123456),
-(10, 'Administración', 10234567);
+INSERT INTO departamento (ID_DEPTO, NOMBRE) VALUES
+(1, 'Recursos Humanos'),
+(2, 'Finanzas'),
+(3, 'Tecnología'),
+(4, 'Marketing'),
+(5, 'Ventas'),
+(6, 'Investigación y Desarrollo'),
+(7, 'Servicio al Cliente'),
+(8, 'Operaciones'),
+(9, 'Legal'),
+(10, 'Administración');
 
 INSERT INTO asignacion (ID_ASIG, ID_DEPTO, ID_RUT) VALUES
 (1, 1, 12345678),
