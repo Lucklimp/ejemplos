@@ -1,5 +1,5 @@
 from GESTION.DAL.db_emp import agregar_usuario, mostrar_empleados, eliminar_empleado
-from GESTION.DAL.db_depto import agregar_departamento, actualizar_departamento, buscar_departamento, eliminar_departamento, mostrar_departamentos
+from GESTION.DAL.db_depto import agregar_departamento, actualizar_departamento, buscar_departamento, eliminar_departamento, mostrar_departamentos, asignar_departamento
 from GESTION.DAL.db_proyecto import crear_proyecto, actualizar_proyecto, eliminar_proyecto, mostrar_proyecto, asignar_proyecto_a_empleado
 from GESTION.CLASES.informe import generar_informes_pdf
 
@@ -46,11 +46,7 @@ while opcion != '0':
                     nombre = input("Ingrese el nombre del departamento a eliminar: ")
                     eliminar_departamento(nombre)
                 elif opcion == "8":
-                    asignando = input("ingrese el nombre del empleado:")
-                    asig = Asignacion()
-                    asig.asignar(asignando)    
-                    asig.asignar()
-
+                     asignar_departamento()
                 elif opcion == "9":
                     reasignando = input("Ingrese el nombre del empleado a reasignar:")
                     reasig = Asignacion()
@@ -65,7 +61,9 @@ while opcion != '0':
                      nombre_proyec = input("Ingrese el nombre del proyecto a eliminar: ")
                      eliminar_proyecto(nombre_proyec)
                 elif opcion == "13":
-                     asignar_proyecto_a_empleado()
+                    persona = input("ingrese el id_rut:")
+                    proyecto = input("ingrese el id_del proyecto a asignar: ")
+                    asignar_proyecto_a_empleado(persona, proyecto)
                 elif opcion=="14":
                     generar_informes_pdf("informe_departamento.pdf")
                     print("Informe PDF generado en 'informe_departamento.pdf'")

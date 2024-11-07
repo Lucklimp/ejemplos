@@ -138,3 +138,23 @@ def eliminar_departamento(nombre):
 
     except mysql.connector.Error as err:
         print(f"Error: {err}")
+
+def asignar_departamento():
+    """
+    asigna un departamento
+    """
+    try: 
+        conn = conexion() 
+        if conn is not None: 
+            cursor = conn.cursor() 
+            nombre_id= input("Ingrese del empleado: ") 
+            nombre_id_depto= input("Ingrese la id del departamento: ") 
+            sql = "INSERT INTO asignacion (id_depto, id_rut) VALUES (%s,%s)" 
+            valores = ( nombre_id_depto, nombre_id) 
+            cursor.execute(sql, valores) 
+            conn.commit() 
+            print("departamneto asignado correctamente") 
+            cursor.close() 
+            conn.close() 
+    except Error as e: 
+        print(f"Error al asignarel departamento: {e}")
