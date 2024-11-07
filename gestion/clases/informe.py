@@ -2,11 +2,12 @@ from GESTION.DAL.db import conexion
 from pandas.plotting import table
 import pandas as pd
 import matplotlib.pyplot as plt
+
 def obtener_datos(): 
     conex = conexion() 
-    consulta = "SELECT * FROM empleados,departamento, proyectos, registro tiempo" # Ajusta esta consulta según tus necesidades 
+    consulta = "SELECT * FROM empleados, departamento, proyectos, registro tiempo" # Ajusta esta consulta según tus necesidades 
     df = pd.read_sql(consulta, conex) 
-    conexion.close() 
+    conex.close() 
     return df
 
 def generar_informe_excel(): 

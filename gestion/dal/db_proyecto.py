@@ -108,3 +108,18 @@ def eliminar_proyecto(nombre):
 
     except Error as err:
         print(f"Error: {err}")
+
+def asignar_proyecto_a_empleado(): 
+    try: 
+        conex = conexion() 
+        with conex.cursor() as cursor: 
+            persona = input("ingrese el id_rut:")
+            proyecto = input("ingrese el id_del proyecto a asignar: ")
+            sql = "INSERT INTO proyecto_emp ( id_proyecto, id_tipo ) VALUES (%s, %s)" 
+            cursor.execute(sql, persona, proyecto) 
+            conex.commit() 
+            conex.close()
+            print("Proyecto asignado correctamente") 
+    except Error as e: 
+        print(f"Error al asignar el proyecto: {e}") 
+        

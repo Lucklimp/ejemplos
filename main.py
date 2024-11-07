@@ -1,7 +1,9 @@
 from GESTION.DAL.db_emp import agregar_usuario, mostrar_empleados, eliminar_empleado
 from GESTION.DAL.db_depto import agregar_departamento, actualizar_departamento, buscar_departamento, eliminar_departamento, mostrar_departamentos
-from GESTION.DAL.db_proyecto import crear_proyecto, actualizar_proyecto, eliminar_proyecto, mostrar_proyecto
+from GESTION.DAL.db_proyecto import crear_proyecto, actualizar_proyecto, eliminar_proyecto, mostrar_proyecto, asignar_proyecto_a_empleado
 from GESTION.CLASES.informe import generar_informes_pdf
+
+from GESTION.CLASES.asignacion import Asignacion
 from colorama import Fore
 import os
 opcion =""
@@ -14,16 +16,17 @@ while opcion != '0':
                 print(Fore.GREEN + "[4] Crear Departamento") 
                 print(Fore.GREEN + "[5] Editar Departamento")
                 print(Fore.GREEN + "[6] Buscar Departamentos")
-                print(Fore.GREEN + "[7] Eliminar Departamento")
-                 
+                print(Fore.GREEN + "[7] Eliminar Departamento")            
                 print(Fore.GREEN + "[8] Asignar Departamento") 
                 print(Fore.GREEN + "[9] Reasignar Departamento") 
                 print(Fore.CYAN + "[10] Crear Proyecto") 
                 print(Fore.CYAN + "[11] Editar Proyecto") 
                 print(Fore.CYAN + "[12] Eliminar Proyecto") 
                 print(Fore.CYAN + "[13] Asignar Proyecto") 
-                print("[14] Generar Informe") 
-                opcion = input("Elegir una opcion: ") 
+                print(Fore.CYAN + "[14] Generar Informe") 
+                print(Fore.LIGHTMAGENTA_EX + "[S] salir")
+
+                opcion = input(Fore.LIGHTWHITE_EX + "Elegir una opcion: ") 
 
                 if opcion == "1": 
                     agregar_usuario()
@@ -42,10 +45,17 @@ while opcion != '0':
                     mostrar_departamentos()
                     nombre = input("Ingrese el nombre del departamento a eliminar: ")
                     eliminar_departamento(nombre)
-                #elif opcion == "8":
-                      
-                #elif opcion == "9":
-                      
+                elif opcion == "8":
+                    asignando = input("ingrese el nombre del empleado:")
+                    asig = Asignacion()
+                    asig.asignar(asignando)    
+                    asig.asignar()
+
+                elif opcion == "9":
+                    reasignando = input("Ingrese el nombre del empleado a reasignar:")
+                    reasig = Asignacion()
+                    reasig.reasignar(reasignando)
+                    reasig.reasignar
                 elif opcion == "10":
                     crear_proyecto()
                 elif opcion =="11":
@@ -54,10 +64,16 @@ while opcion != '0':
                      mostrar_proyecto()
                      nombre_proyec = input("Ingrese el nombre del proyecto a eliminar: ")
                      eliminar_proyecto(nombre_proyec)
-                #elif opcion == "13":
+                elif opcion == "13":
+                     asignar_proyecto_a_empleado()
                 elif opcion=="14":
                     generar_informes_pdf("informe_departamento.pdf")
                     print("Informe PDF generado en 'informe_departamento.pdf'")
+            
+                elif (opcion.upper() == "S"):   # si opcion es salir nos despedimos
+                    print("Hasta luego.")
+                else:
+                    print(f"{opcion} no es una opción válida")
                 os.system('pause')
 
 
