@@ -139,22 +139,40 @@ def eliminar_departamento(nombre):
     except mysql.connector.Error as err:
         print(f"Error: {err}")
 
-def asignar_departamento():
-    """
-    asigna un departamento
-    """
+
+
+def reasignar_departamento(): 
+    """ Reasigna un empleado a un nuevo departamento, 
+    asegurando que el empleado esté asociado a un solo departamento a la vez, 
+    y confirmando si desea eliminar al empleado del departamento actual. """ 
     try: 
         conn = conexion() 
         if conn is not None: 
-            cursor = conn.cursor() 
-            nombre_id= input("Ingrese del empleado: ") 
-            nombre_id_depto= input("Ingrese la id del departamento: ") 
-            sql = "INSERT INTO asignacion (id_depto, id_rut) VALUES (%s,%s)" 
-            valores = ( nombre_id_depto, nombre_id) 
-            cursor.execute(sql, valores) 
-            conn.commit() 
-            print("departamneto asignado correctamente") 
-            cursor.close() 
-            conn.close() 
+            with conn.cursor() as cursor: 
+                id_empleado = input("Ingrese el ID del empleado: ") 
+                id_depto = input("Ingrese el ID del nuevo departamento: ") # Verificar si el empleado ya está asignado a un departamento
+                sql_verificar = "SELECT id_depto FROM asignacion WHERE id_rut = %s" 
+                cursor.execute(sql_verificar, (id_empleado,)) 
+                resultado = cursor.fetchone() 
+                if resultado: # Si el empleado ya está asignado a un departamento, pedir confirmación para reasignar 
+                    confirmar = input(f"El empleado {id_empleado} ya está asignado al departamento {resultado[0]}. ¿Desea reasignarlo? (s/n): ")
+                    if confirmar == 's': # Eliminar la asignación existente del empleado 
+                        sql_delete = "DELETE FROM asignacion WHERE id_rut = %s" 
+                        cursor.execute(sql_delete, (id_empleado,)) # Asignar el empleado al nuevo departamento 
+                        sql_insert = "INSERT INTO asignacion (id_depto, id_rut) VALUES (%s, %s)" 
+                        valores = (id_depto, id_empleado) 
+                        cursor.execute(sql_insert, valores) 
+                        conn.commit() 
+                        print("Empleado reasignado correctamente al nuevo departamento") 
+                    else: 
+                        print("Reasignación cancelada.") 
+                else: # Si el empleado no está asignado a ningún departamento, proceder con la asignación 
+                    sql_insert = "INSERT INTO asignacion (id_depto, id_empleado, fecha_asignacion) VALUES (%s, %s)"
+                    valores = (id_depto, id_empleado) 
+                    cursor.execute(sql_insert, valores) 
+                    conn.commit() 
+                    print("Empleado asignado correctamente al departamento") 
+                    cursor.close() 
+                    conn.close() 
     except Error as e: 
-        print(f"Error al asignarel departamento: {e}")
+        print(f"Error al reasignar el departamento: {e}")

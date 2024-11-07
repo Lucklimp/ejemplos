@@ -1,5 +1,5 @@
 from GESTION.DAL.db_emp import agregar_usuario, mostrar_empleados, eliminar_empleado
-from GESTION.DAL.db_depto import agregar_departamento, actualizar_departamento, buscar_departamento, eliminar_departamento, mostrar_departamentos, asignar_departamento
+from GESTION.DAL.db_depto import agregar_departamento, actualizar_departamento, buscar_departamento, eliminar_departamento, mostrar_departamentos, asignar_departamento, reasignar_departamento
 from GESTION.DAL.db_proyecto import crear_proyecto, actualizar_proyecto, eliminar_proyecto, mostrar_proyecto, asignar_proyecto_a_empleado
 from GESTION.CLASES.informe import generar_informes_pdf
 
@@ -17,13 +17,12 @@ while opcion != '0':
                 print(Fore.GREEN + "[5] Editar Departamento")
                 print(Fore.GREEN + "[6] Buscar Departamentos")
                 print(Fore.GREEN + "[7] Eliminar Departamento")            
-                print(Fore.GREEN + "[8] Asignar Departamento") 
-                print(Fore.GREEN + "[9] Reasignar Departamento") 
-                print(Fore.CYAN + "[10] Crear Proyecto") 
-                print(Fore.CYAN + "[11] Editar Proyecto") 
-                print(Fore.CYAN + "[12] Eliminar Proyecto") 
-                print(Fore.CYAN + "[13] Asignar Proyecto") 
-                print(Fore.CYAN + "[14] Generar Informe") 
+                print(Fore.GREEN + "[8] Reasignar Departamento") 
+                print(Fore.CYAN + "[9] Crear Proyecto") 
+                print(Fore.CYAN + "[10] Editar Proyecto") 
+                print(Fore.CYAN + "[11] Eliminar Proyecto") 
+                print(Fore.CYAN + "[12] Asignar Proyecto") 
+                print(Fore.CYAN + "[13] Generar Informe") 
                 print(Fore.LIGHTMAGENTA_EX + "[S] salir")
 
                 opcion = input(Fore.LIGHTWHITE_EX + "Elegir una opcion: ") 
@@ -46,25 +45,20 @@ while opcion != '0':
                     nombre = input("Ingrese el nombre del departamento a eliminar: ")
                     eliminar_departamento(nombre)
                 elif opcion == "8":
-                     asignar_departamento()
+                    reasignar_departamento()
                 elif opcion == "9":
-                    reasignando = input("Ingrese el nombre del empleado a reasignar:")
-                    reasig = Asignacion()
-                    reasig.reasignar(reasignando)
-                    reasig.reasignar
-                elif opcion == "10":
                     crear_proyecto()
-                elif opcion =="11":
+                elif opcion =="10":
                      actualizar_proyecto()
-                elif opcion =="12":
+                elif opcion =="11":
                      mostrar_proyecto()
                      nombre_proyec = input("Ingrese el nombre del proyecto a eliminar: ")
                      eliminar_proyecto(nombre_proyec)
-                elif opcion == "13":
+                elif opcion == "12":
                     persona = input("ingrese el id_rut:")
                     proyecto = input("ingrese el id_del proyecto a asignar: ")
                     asignar_proyecto_a_empleado(persona, proyecto)
-                elif opcion=="14":
+                elif opcion=="13":
                     generar_informes_pdf("informe_departamento.pdf")
                     print("Informe PDF generado en 'informe_departamento.pdf'")
             
