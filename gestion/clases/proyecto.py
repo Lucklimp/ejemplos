@@ -5,3 +5,8 @@ class Proyecto:
         self.descripcion = descripcion
         self.fecha_inicio = fecha_inicio
         self.fecha_plazo = fecha_plazo
+
+    def validar_fecha(self):
+        # Lógica para validar fechas
+        if self.fecha_inicio > self.fecha_plazo:
+            raise ValueError("La fecha de inicio no puede ser posterior a la fecha plazo.")
